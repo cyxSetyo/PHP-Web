@@ -1,52 +1,46 @@
-<?php
-session_start();
-
-if($_SESSION['login'] !== true) {
-    header('Location:/Session/member.php');
+<?php 
+    session_start();
+    
+    if($_SESSION['login'] == true){
+    header('Location:/session/member.php');
     exit();
 }
 
-$error = "";
-if($_SERVER['REQUEST_METHOD'] == "POST"){
-    if($_POST['username'] == 'eko' && $_POST['password' == 'eko']){
-        //sucess
-        $_SESSION['login'] = true;
-        $_SESSION['username'] = 'eko';
-        header('Location:/Session/member.php');
-    }else{
-        // gagal
-        $error = "Login Gagal";
+    $error = "";
+    if($_SERVER['REQUEST_METHOD'] == "POST"){
+        if($_POST['username'] == 'budi' && $_POST['password'] == 'budi'){
+            //sucess
+            $_SESSION['login'] = true;
+            $_SESSION['username'] = 'budi';
+            header('Location : /session/member.php');
+            exit();
+        }else{
+            //gagal
+            $error = "LOGIN GAGAL";
+        }
     }
-}
-
 ?>
 
 
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <?php if($error !=""){ ?>
-        <h2><?php $error ?></h2>
-    <?php } ?>
+<html>
+    <body>
+        <?php if($error != ""){?>
+            <h2><?= $error ?></h2>
+        <?php }?>
 
-    <h2>Login Fisrt</h2>
-    <form action="/Session/login.php" method="post">
-        <label for="username">Username : 
+        <h1>Register</h1>
+        <form action="/session/login.php" method="post">
+        <label for="username">Username :
             <input type="text" name="username">
         </label>
         <br/>
+
         <label for="password">Password :
-            <input type="text" name="Password">
+            <input type="text" name="password">
         </label>
         <br>
-        <input type="button" value="Submit">
-    </form>
-</body>
+        <input type="submit" value="Login">
+        </form>
+    </body>
 </html>
